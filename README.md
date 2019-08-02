@@ -1,2 +1,2 @@
 # ndn-tests
-Testing with the jNDN library 
+Experimentation with the jNDN library
