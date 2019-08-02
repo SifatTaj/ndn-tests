@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public class TestSendMeme {
+public class MemeProducer {
 
     private static ByteBuffer toBuffer(int[] array) {
         ByteBuffer result = ByteBuffer.allocate(array.length);
@@ -130,6 +130,7 @@ public class TestSendMeme {
     public static void main(String... args) {
         try {
             Face face = new Face();
+            System.out.println("Max Data Size: " + face.getMaxNdnPacketSize());
             KeyChain keyChain = new KeyChain("pib-memory:", "tpm-memory:");
             keyChain.importSafeBag(new SafeBag
                     (new Name("/testname/KEY/123"),
@@ -152,7 +153,7 @@ public class TestSendMeme {
             }
 
         } catch (Exception e) {
-            System.out.println("exception: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

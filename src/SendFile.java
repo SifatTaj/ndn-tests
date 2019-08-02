@@ -24,6 +24,7 @@ public class SendFile implements OnInterestCallback, OnRegisterFailed {
 
         try {
             byte[] fileContent = Files.readAllBytes(file_.toPath());
+            System.out.println("Data Size: " + fileContent.length);
             data.setContent(new Blob(fileContent));
             keyChain_.sign(data);
             face.putData(data);
