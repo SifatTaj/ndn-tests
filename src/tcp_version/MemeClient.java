@@ -16,6 +16,7 @@ public class MemeClient {
             stream.read(fileContent);
 
             // Writing the file
+            // Change the path if you are not using macOS
             FileOutputStream fileOutputStream = new FileOutputStream("/Users/taj/Pictures/tcpMEME.jpg");
             fileOutputStream.write(fileContent);
 
