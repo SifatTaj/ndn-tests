@@ -17,7 +17,7 @@ public class SendFile implements OnInterestCallback, OnRegisterFailed {
         file_ = file;
     }
 
-    // The following function is called when an interest packet is received matching the prefix.
+    // The following method is called when an interest packet is received matching the prefix.
     @Override
     public void onInterest(Name name, Interest interest, Face face, long l, InterestFilter interestFilter) {
         // Setting a counter to break the main event loop.
@@ -46,7 +46,7 @@ public class SendFile implements OnInterestCallback, OnRegisterFailed {
 
     }
 
-    // The following function is called when a request times out.
+    // The following method is called when a request times out.
     @Override
     public void onRegisterFailed(Name name) {
         ++responseCount_;

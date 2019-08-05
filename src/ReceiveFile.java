@@ -17,7 +17,7 @@ public class ReceiveFile implements OnData, OnTimeout {
         saveLocation_ = saveLocation;
     }
 
-    // The following function is called when a data is received matching the prefix.
+    // The following method is called when a data is received matching the prefix.
     @Override
     public void onData(Interest interest, Data data) {
         // Setting a counter to break the main event loop.
@@ -43,7 +43,7 @@ public class ReceiveFile implements OnData, OnTimeout {
         }
     }
 
-    // The following function is called when a request times out.
+    // The following method is called when a request times out.
     @Override
     public void onTimeout(Interest interest) {
         ++callbackCount_;
