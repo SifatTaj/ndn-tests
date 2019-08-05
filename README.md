@@ -5,8 +5,8 @@ Experimentation with the jNDN library testing how to send and receive file thoru
 
 ### Requirements
   - [NFD - Named Data Networking Forwarding Daemon](https://github.com/named-data/NFD)
-      - [Guide](http://named-data.net/doc/NFD/current/INSTALL.html) for Linux and macOS users
-      - [Guide](https://yoursunny.com/t/2018/NFD-on-Windows-10-WSL/) for Windows users on how to run NFD using Windows Subsystem for Linux
+      - [Guide](http://named-data.net/doc/NFD/current/INSTALL.html) for Linux and macOS (works natively)
+      - [Guide](https://yoursunny.com/t/2018/NFD-on-Windows-10-WSL/) for Windows (using Windows Subsystem for Linux)
   - [Apache Maven](https://maven.apache.org/what-is-maven.html)
   - [jNDN Library](https://github.com/named-data/jndn)
   - Java JDK version >= 1.7
