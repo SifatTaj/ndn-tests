@@ -22,7 +22,7 @@ public class MemeConsumer {
             System.out.println("Express name " + name.toUri());
 
             // Creating the Interest packet and looking for "/sendmeme"
-            // prefix in the FIB of the connected NDN
+            // prefix in the FIB of the connected NFD
             face.expressInterest(name, recieveMeme, recieveMeme);
 
             // The main event loop.
