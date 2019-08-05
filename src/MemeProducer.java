@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 
 public class MemeProducer {
 
+    // To Convert int array to ByteBuffer.
     private static ByteBuffer toBuffer(int[] array) {
         ByteBuffer result = ByteBuffer.allocate(array.length);
         for (int i = 0; i < array.length; ++i)
@@ -24,6 +25,7 @@ public class MemeProducer {
         return result;
     }
 
+    // PKCS #8 PrivateKeyInfo.
     private static final ByteBuffer DEFAULT_RSA_PUBLIC_KEY_DER = toBuffer(new int[]{
             0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01,
             0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x0f, 0x00, 0x30, 0x82, 0x01, 0x0a, 0x02, 0x82, 0x01, 0x01,
@@ -129,8 +131,13 @@ public class MemeProducer {
 
     public static void main(String... args) {
         try {
+            // Creating a Face to connect to the NFD running in localhost.
             Face face = new Face();
+
+            // Printing maximum data size one NDN packet can send.
             System.out.println("Max Data Size: " + face.getMaxNdnPacketSize());
+
+            // Creating a keychain using RSA to sign the data
             KeyChain keyChain = new KeyChain("pib-memory:", "tpm-memory:");
             keyChain.importSafeBag(new SafeBag
                     (new Name("/testname/KEY/123"),
@@ -139,16 +146,32 @@ public class MemeProducer {
                     )
             );
 
+            //  For now, when setting face.setCommandSigningInfo, use a key chain with
+            //  a default private key instead of the system default key chain. This
+            //  is OK for now because NFD is configured to skip verification, so it
+            //  ignores the system default key chain.
             face.setCommandSigningInfo(keyChain, keyChain.getDefaultCertificateName());
 
+            // Selecting the required file to send.
             File meme = new File("meme.jpg");
+
+            // Assigning NDN prefix.
             Name name = new Name("/sendmeme");
+
+            // Printing the prefix.
             System.out.println("Register prefix  " + name.toUri());
+
+            // Calling SendFile module to send the selected file.
             SendFile sendMeme = new SendFile(keyChain, meme);
+
+            // Registering NDN prefix.
             face.registerPrefix(name, sendMeme, sendMeme);
 
+            // The main event loop.
+            // Wait to receive one interest for the prefix.
             while (sendMeme.responseCount_ < 1) {
                 face.processEvents();
+                // We need to sleep for a few milliseconds so we don't use 100% of the CPU.
                 Thread.sleep(5);
             }
 
