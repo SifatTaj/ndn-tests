@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
 
-public class RecieveFile implements OnData, OnTimeout {
+public class ReceiveFile implements OnData, OnTimeout {
     public int callbackCount_ = 0;
     public byte[] bytes_;
     private String saveLocation_;
 
-    public RecieveFile(String saveLocation) {
+    public ReceiveFile(String saveLocation) {
         saveLocation_ = saveLocation;
     }
 
