@@ -24,7 +24,7 @@ public class SendFile implements OnInterestCallback, OnRegisterFailed {
         ++responseCount_;
         Data data = new Data(interest.getName());
 
-        // Encoding the dsta.
+        // Encoding the data.
         try {
             // Converting the file to a byte array.
             byte[] fileContent = Files.readAllBytes(file_.toPath());
