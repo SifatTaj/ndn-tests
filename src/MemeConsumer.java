@@ -3,6 +3,9 @@ import net.named_data.jndn.Interest;
 import net.named_data.jndn.Name;
 
 public class MemeConsumer {
+
+    public static long start = 0;
+
     public static void main(String[] args) {
 
         // Setting defaultCanBePrefix.
@@ -16,13 +19,15 @@ public class MemeConsumer {
             ReceiveFile receiveFile = new ReceiveFile("data_from_ndn.rtf");
 
             // Assigning NDN prefix.
-            Name name = new Name("/sendmeme");
+            Name name = new Name("/sendtestdata");
 
             // Printing the prefix.
             System.out.println("Express name " + name.toUri());
 
             // Creating the Interest packet and looking for "/sendmeme"
             // prefix in the FIB of the connected NFD
+
+            start = System.nanoTime();
 
             face.expressInterest(name, receiveFile, receiveFile);
 

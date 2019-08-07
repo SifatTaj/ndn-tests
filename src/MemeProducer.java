@@ -156,7 +156,7 @@ public class MemeProducer {
             File meme = new File("lorem.rtf");
 
             // Assigning NDN prefix.
-            Name name = new Name("/sendmeme");
+            Name name = new Name("/sendtestdata");
 
             // Printing the prefix.
             System.out.println("Register prefix  " + name.toUri());
