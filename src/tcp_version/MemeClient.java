@@ -7,7 +7,8 @@ import java.io.FileOutputStream;
 import java.net.Socket;
 
 class Client {
-    public static void main(String args[]) throws Exception {
+
+    protected static void receiveData() throws Exception {
         String address = "localhost";
 
         Socket s = new Socket(address, 5000);
@@ -30,5 +31,10 @@ class Client {
             e.printStackTrace();
         }
     }
+    public static void main(String args[]) throws Exception {
+        long start = System.currentTimeMillis();
+        receiveData();
+        long time = System.currentTimeMillis() - start;
+        System.out.println("Execution Time: " + time);
+    }
 }
-//this is a typical client program
