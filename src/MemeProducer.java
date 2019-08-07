@@ -153,7 +153,7 @@ public class MemeProducer {
             face.setCommandSigningInfo(keyChain, keyChain.getDefaultCertificateName());
 
             // Selecting the required file to send.
-            File meme = new File("meme.jpg");
+            File meme = new File("lorem.rtf");
 
             // Assigning NDN prefix.
             Name name = new Name("/sendmeme");

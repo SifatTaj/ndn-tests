@@ -13,7 +13,7 @@ public class MemeConsumer {
             Face face = new Face();
 
             // Calling ReceiveFile module to receive the file.
-            ReceiveFile recieveMeme = new ReceiveFile("/Users/taj/Pictures/theMEME.jpg");
+            ReceiveFile receiveFile = new ReceiveFile("data_from_ndn.rtf");
 
             // Assigning NDN prefix.
             Name name = new Name("/sendmeme");
@@ -23,11 +23,12 @@ public class MemeConsumer {
 
             // Creating the Interest packet and looking for "/sendmeme"
             // prefix in the FIB of the connected NFD
-            face.expressInterest(name, recieveMeme, recieveMeme);
+
+            face.expressInterest(name, receiveFile, receiveFile);
 
             // The main event loop.
             // Wait to receive one interest for the prefix.
-            while (recieveMeme.callbackCount_ < 1) {
+            while (receiveFile.callbackCount_ < 1) {
                 face.processEvents();
                 // We need to sleep for a few milliseconds so we don't use 100% of the CPU.
                 Thread.sleep(5);

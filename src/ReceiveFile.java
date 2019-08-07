@@ -26,6 +26,7 @@ public class ReceiveFile implements OnData, OnTimeout {
         // Printing the prefix from which it got the required data
         System.out.println("Got Data with prefix " + data.getName().toUri());
 
+        long start = System.nanoTime();
         // Converting the received byte array to byte buffer.
         ByteBuffer content = data.getContent().buf();
         byte[] bytes = new byte[content.remaining()];
@@ -38,6 +39,8 @@ public class ReceiveFile implements OnData, OnTimeout {
         // Writing the data to saveLocation path.
         try {
             Files.write(new File(saveLocation_).toPath(), bytes_);
+            long time = System.nanoTime() - start;
+            System.out.println("Execution Time: " + time + "ns");
         } catch (IOException e) {
             e.printStackTrace();
         }
