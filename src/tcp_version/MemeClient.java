@@ -32,9 +32,9 @@ class Client {
         }
     }
     public static void main(String args[]) throws Exception {
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         receiveData();
-        long time = System.currentTimeMillis() - start;
-        System.out.println("Execution Time: " + time);
+        long time = System.nanoTime() - start;
+        System.out.println("Execution Time: " + time + "ns");
     }
 }
