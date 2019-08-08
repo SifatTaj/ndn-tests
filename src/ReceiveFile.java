@@ -30,13 +30,14 @@ public class ReceiveFile implements OnData, OnTimeout {
         bytes_ = bytes;
 
         // Printing the received data size.
-        System.out.println("Data size: " + bytes_.length);
+//        System.out.println("Data size: " + bytes_.length);
 
         // Writing the data to saveLocation path.
         try {
             Files.write(new File(saveLocation_).toPath(), bytes_);
             long time = System.nanoTime() - MemeConsumer.start;
-            System.out.println("Execution Time: " + time + "ns");
+            System.out.println(time);
+            MemeConsumer.totalTime = MemeConsumer.totalTime + time;
         } catch (IOException e) {
             e.printStackTrace();
         }
